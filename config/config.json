@@ -1,0 +1,29 @@
+{
+  "name": "MNC Wallet",
+  "app": {
+    "mode": "development",
+    "base_url": "localhost",
+    "port": ":8080"
+  },
+  "migration": {
+    "db": {
+      "postgres": {
+        "db_host": "localhost",
+        "db_port": 5432,
+        "db_name": "db_mnc_wallet",
+        "db_user": "root",
+        "db_password": "password",
+        "db_engine": "postgres"
+      }
+    }
+  },
+  "connection": {
+    "redis": {
+      "host": "localhost",
+      "port": 6379,
+      "password": "",
+      "db": 0
+    }
+  },
+  "jwt_secret_key": "9wBhsNnwtq0AFs30V6B90KTDsAQ2oFW1VWcDpNVQ"
+}
