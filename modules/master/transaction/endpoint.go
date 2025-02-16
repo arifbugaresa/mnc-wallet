@@ -21,6 +21,9 @@ func Initiator(router *gin.Engine, dbConnection *sqlx.DB, redisConnection *redis
 		protectedApi.POST("/top-up", func(c *gin.Context) {
 			TopUpEndpoint(c, userSrv)
 		})
+		protectedApi.POST("/transfer", func(c *gin.Context) {
+			TransferEndpoint(c, userSrv, rabbitMqConn)
+		})
 	}
 }
 
@@ -47,4 +50,29 @@ func TopUpEndpoint(ctx *gin.Context, userSrv Service) {
 	}
 
 	response.GenerateSuccessResponseWithData(ctx, "top up successful", result)
+}
+
+func TransferEndpoint(ctx *gin.Context, userSrv Service, rabbitMqConn *rabbitmq.RabbitMQ) {
+	var (
+		dataBody TransferRequest
+	)
+
+	if err := ctx.ShouldBindJSON(&dataBody); err != nil {
+		response.GenerateErrorResponse(ctx, err.Error())
+		return
+	}
+
+	err := dataBody.ValidateTransferRequest()
+	if err != nil {
+		response.GenerateErrorResponse(ctx, err.Error())
+		return
+	}
+
+	_, err = userSrv.Transfer(ctx, dataBody, rabbitMqConn)
+	if err != nil {
+		response.GenerateErrorResponse(ctx, err.Error())
+		return
+	}
+
+	response.GenerateSuccessResponse(ctx, "transfer will be process in background, have fun!")
 }
