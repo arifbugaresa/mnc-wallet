@@ -23,6 +23,12 @@
       "port": 6379,
       "password": "",
       "db": 0
+    },
+    "rabbit": {
+      "url": "amqp://admin:password@localhost:5672",
+      "port": "",
+      "user": "admin",
+      "password": "password"
     }
   },
   "jwt_secret_key": "9wBhsNnwtq0AFs30V6B90KTDsAQ2oFW1VWcDpNVQ"

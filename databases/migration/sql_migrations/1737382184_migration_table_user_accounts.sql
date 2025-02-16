@@ -10,6 +10,7 @@ CREATE TABLE tm_users_accounts(
     phone_number    VARCHAR(100) NOT NULL UNIQUE,
     address         VARCHAR(100),
     pin             INT,
+    balance         DECIMAL(10,2),
     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     created_by      VARCHAR(100) DEFAULT NULL,
     updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

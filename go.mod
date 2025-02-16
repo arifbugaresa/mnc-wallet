@@ -11,6 +11,7 @@ require (
 	github.com/redis/go-redis/v9 v9.7.0
 	github.com/rubenv/sql-migrate v1.7.1
 	github.com/spf13/viper v1.19.0
+	github.com/streadway/amqp v1.1.0
 	golang.org/x/crypto v0.31.0
 )
 
